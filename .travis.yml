@@ -18,3 +18,16 @@ after_success:
   - docker push clubdeuce/multi-nginx
   - docker push clubdeuce/multi-server
   - docker push clubdeuce/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "Multi-docker-env"
+  bucket_name: elasticbeanstalk-us-east-1-122018988684
+  bucket_path: multi-docker
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
