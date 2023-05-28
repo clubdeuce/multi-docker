@@ -13,3 +13,8 @@ after_success:
   - docker build -t clubdeuce/multi-nginx ./nginx
   - docker build -t clubdeuce/multi-server ./server
   - docker build -t clubdeuce/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push clubdeuce/multi-client
+  - docker push clubdeuce/multi-nginx
+  - docker push clubdeuce/multi-server
+  - docker push clubdeuce/multi-worker
